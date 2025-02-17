@@ -20,5 +20,9 @@ namespace WPF
         {
             InitializeComponent();
         }
+        private void CloseApp_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
