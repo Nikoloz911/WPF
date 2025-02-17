@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WPF.ViewModel
+﻿using WPF.Model;
+namespace WPF.ViewModel;
+internal class CustomerVM : Utilities.ViewModelBase
 {
-    internal class CustomerVM
+    private readonly PageModel _pageModel;
+    public int CustomerID
     {
+        get { return _pageModel.CustumerCount; }
+        set { _pageModel.CustumerCount = value; OnPropertyChanged(); }
+    }
+
+    public CustomerVM()
+    {
+        _pageModel = new PageModel();
+        CustomerID = 100528;
     }
 }
