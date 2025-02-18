@@ -29,4 +29,9 @@
     <DataTemplate DataType="{x:Type vm:SettingVM}">
         <view:Settings />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:Wisol}">
+        <view:Wisol />
+    </DataTemplate>
+    
 </ResourceDictionary>

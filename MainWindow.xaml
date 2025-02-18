@@ -35,9 +35,9 @@
                   Width="228">
 
                 <Border Background="#272B2F"
-                        CornerRadius="20,0,0,20" />
+                        CornerRadius="20,0,0,20" Margin="-10,0,10,0" />
 
-                <StackPanel Height="400"
+                <StackPanel Height="450"
                             Width="228">
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
@@ -133,7 +133,7 @@
                     </Menu:Btn>
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding SettingsCommand}">
+                              Command="{Binding SettingsCommand}" Checked="Btn_Checked">
 
                         <Grid>
 
@@ -142,6 +142,21 @@
 
                             <TextBlock Text="Settings"
                                        Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                       Command="{Binding WisolCommand}" Checked="Btn_Checked">
+
+                        <Grid>
+
+                            <Image Source="Images/Wisol.png"
+                 Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Wisol"
+                     Style="{StaticResource Text_Style}" />
 
                         </Grid>
 

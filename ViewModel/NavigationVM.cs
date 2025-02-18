@@ -18,6 +18,7 @@ internal class NavigationVM : ViewModelBase
     public ICommand TransactionsCommand { get; set; }
     public ICommand ShipmentsCommand { get; set; }
     public ICommand SettingsCommand { get; set; }
+    public ICommand WisolCommand { get; set; }
 
     private void Home(object obj) => CurrentView = new HomeVM();
     private void Customer(object obj) => CurrentView = new CustomerVM();
@@ -26,6 +27,7 @@ internal class NavigationVM : ViewModelBase
     private void Transaction(object obj) => CurrentView = new TransactionVM();
     private void Shipment(object obj) => CurrentView = new ShipmentVM();
     private void Setting(object obj) => CurrentView = new SettingVM();
+    private void Wisol(object obj) => CurrentView = new Wisol();
 
     public NavigationVM()
     {
@@ -36,6 +38,7 @@ internal class NavigationVM : ViewModelBase
         TransactionsCommand = new RelayCommand(Transaction);
         ShipmentsCommand = new RelayCommand(Shipment);
         SettingsCommand = new RelayCommand(Setting);
+        WisolCommand = new RelayCommand(Wisol);
 
         CurrentView = new HomeVM();
     }
