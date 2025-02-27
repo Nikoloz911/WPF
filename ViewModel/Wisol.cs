@@ -1,25 +1,26 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
 namespace WPF.ViewModel
 {
     public class Wisol : INotifyPropertyChanged
     {
         private Dictionary<string, double> _fuelPrices = new Dictionary<string, double>
         {
-            { "Regular", 2.70 }, 
+            { "Regular", 2.70 },
             { "Premium", 2.90 },
             { "Diesel", 2.80 }
         };
-
         private string _selectedFuelType;
         private string _liters;
         private double _totalPrice;
+        private string _errorMessage;
+        private bool _hasError;
 
         public Wisol()
         {
             _selectedFuelType = "Regular";
         }
+
         public List<string> FuelTypes => new List<string>(_fuelPrices.Keys);
 
         public string SelectedFuelType
@@ -59,10 +60,34 @@ namespace WPF.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            private set
+            {
+                _errorMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool HasError
+        {
+            get => _hasError;
+            private set
+            {
+                _hasError = value;
+                OnPropertyChanged();
+            }
+        }
+
         private void CalculateTotalPrice()
         {
             if (double.TryParse(Liters, out double liters))
             {
+                HasError = false;
+                ErrorMessage = string.Empty;
+
                 if (_fuelPrices.ContainsKey(SelectedFuelType))
                 {
                     TotalPrice = liters * _fuelPrices[SelectedFuelType];
@@ -75,10 +100,13 @@ namespace WPF.ViewModel
             else
             {
                 TotalPrice = 0;
+                HasError = true;
+                ErrorMessage = "Please enter a valid number for liters";
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
